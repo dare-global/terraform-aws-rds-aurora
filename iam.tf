@@ -1,5 +1,5 @@
 resource "aws_iam_role" "rds_enhanced_monitoring" {
-  count = monitoring_role_enabled ? 1 : 0
+  count = var.monitoring_role_enabled ? 1 : 0
 
   name_prefix = "${var.name_prefix}-"
 

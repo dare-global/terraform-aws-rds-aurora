@@ -75,6 +75,7 @@ variable "master_password" {
 variable "kms_key_id" {
   type        = string
   description = "The ARN for the KMS encryption key."
+  default     = null
 }
 
 variable "network_type" {
@@ -219,6 +220,12 @@ variable "cluster_timeouts" {
   description = "Create, update, and delete timeout configurations for the cluster"
   type        = map(string)
   default     = {}
+}
+
+variable "preferred_backup_window" {
+  description = "The daily time range during which automated backups are created if automated backups are enabled using the `backup_retention_period` parameter. Time in UTC"
+  type        = string
+  default     = "02:00-03:00"
 }
 
 variable "preferred_maintenance_window" {

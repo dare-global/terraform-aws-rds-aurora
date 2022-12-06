@@ -4,16 +4,38 @@ Terraform module for provisioning an Amazon RDS Aurora resources.
 ## Usage
 
 ```hcl
-module "rds_aurora" {
+module "rds_aurora_postgres" {
   source  = "dare-global/rds-aurora/aws"
   version = " 1.0.0"
 
+  name_prefix = "aurora-postgres-example-name"
+
+  instance_class = "db.t4g.medium"
+  replica_count  = "2"
+
+  engine                  = "aurora-postgresql"
+  engine_version          = "14.5"
+  engine_parameter_family = "aurora-postgresql14"
+
+  master_username = "MasterUserName"
+  master_password = "MasterPassword123456"
+
+  vpc_id     = data.aws_vpc.default.id
+  subnet_ids = data.aws_subnets.all.ids
+
+  apply_immediately   = true
+  skip_final_snapshot = true
+
+  monitoring_interval = 60
+
+  deletion_protection = false
 }
 ```
 
 ## Examples
 
-* [Postgres](https://github.com/dare-global/terraform-aws-rds-aurora/tree/main/examples/postgres)
+* [PostgreSQL](https://github.com/dare-global/terraform-aws-rds-aurora/tree/main/examples/postgres)
+* [MySQL](https://github.com/dare-global/terraform-aws-rds-aurora/tree/main/examples/mysql)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -99,7 +121,7 @@ No modules.
 | <a name="input_instance_timeouts"></a> [instance\_timeouts](#input\_instance\_timeouts) | Create, update, and delete timeout configurations for the cluster instance(s) | `map(string)` | `{}` | no |
 | <a name="input_instances_parameters"></a> [instances\_parameters](#input\_instances\_parameters) | Individual settings for instances. | `any` | `[]` | no |
 | <a name="input_iops"></a> [iops](#input\_iops) | The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for each DB instance in the Multi-AZ DB cluster. For information about valid Iops values, see https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS to improve performance in the Amazon RDS User Guide. (This setting is required to create a Multi-AZ DB cluster). Must be a multiple between .5 and 50 of the storage amount for the DB cluster. | `number` | `null` | no |
-| <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | The ARN for the KMS encryption key. | `string` | n/a | yes |
+| <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | The ARN for the KMS encryption key. | `string` | `null` | no |
 | <a name="input_master_password"></a> [master\_password](#input\_master\_password) | Password for db admin/master user. Defaults to a random cryptographically secure password. | `string` | `""` | no |
 | <a name="input_master_username"></a> [master\_username](#input\_master\_username) | Username for db admin/master user. Defaults to 'postgres' | `string` | `"postgres"` | no |
 | <a name="input_monitoring_interval"></a> [monitoring\_interval](#input\_monitoring\_interval) | The interval (seconds) between points when Enhanced Monitoring metrics are collected. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. | `number` | `0` | no |
@@ -112,6 +134,7 @@ No modules.
 | <a name="input_performance_insights_kms_key_id"></a> [performance\_insights\_kms\_key\_id](#input\_performance\_insights\_kms\_key\_id) | KMS key for performance insights | `string` | `null` | no |
 | <a name="input_performance_insights_retention_period"></a> [performance\_insights\_retention\_period](#input\_performance\_insights\_retention\_period) | Number of days to retain performance insights information. Defaults to 7 | `number` | `null` | no |
 | <a name="input_port"></a> [port](#input\_port) | Port of the RDS instance. Defaults to 5432 | `number` | `5432` | no |
+| <a name="input_preferred_backup_window"></a> [preferred\_backup\_window](#input\_preferred\_backup\_window) | The daily time range during which automated backups are created if automated backups are enabled using the `backup_retention_period` parameter. Time in UTC | `string` | `"02:00-03:00"` | no |
 | <a name="input_preferred_maintenance_window"></a> [preferred\_maintenance\_window](#input\_preferred\_maintenance\_window) | The weekly time range during which system maintenance can occur, in (UTC) e.g., wed:04:00-wed:04:30 | `string` | `null` | no |
 | <a name="input_publicly_accessible"></a> [publicly\_accessible](#input\_publicly\_accessible) | Whether the DB should have a public IP address | `bool` | `null` | no |
 | <a name="input_replica_count"></a> [replica\_count](#input\_replica\_count) | Number of reader nodes to create. | `number` | `1` | no |
