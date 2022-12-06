@@ -34,7 +34,7 @@ resource "aws_rds_cluster" "main" {
 
   allocated_storage = var.allocated_storage
 
-  vpc_security_group_ids = compact(concat(aws_security_group.main[0].id, var.vpc_security_group_ids))
+  vpc_security_group_ids = compact(concat([aws_security_group.main[0].id], var.vpc_security_group_ids))
 
   backup_retention_period = var.backup_retention_period
 

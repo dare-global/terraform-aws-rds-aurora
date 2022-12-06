@@ -21,17 +21,19 @@ data "aws_subnets" "all" {
   }
 }
 
-module "postgres" {
+module "mysql" {
   source = "../../"
 
-  name_prefix = "aurora-postgres-example"
+  name_prefix = "aurora-mysql-example"
 
   instance_class = "db.t4g.medium"
   replica_count  = "2"
 
-  engine                  = "aurora-postgresql"
-  engine_version          = "14.5"
-  engine_parameter_family = "aurora-postgresql14"
+  engine                  = "aurora-mysql"
+  engine_version          = "8.0.mysql_aurora.3.02.2"
+  engine_parameter_family = "aurora-mysql8.0"
+
+  port = 3306
 
   master_username = "MasterUserName"
   master_password = "MasterPassword123456"

@@ -82,17 +82,17 @@ output "cluster_role_associations" {
 #####
 output "enhanced_monitoring_iam_role_name" {
   description = "The name of the enhanced monitoring role"
-  value       = try(aws_iam_role.rds_enhanced_monitoring.name, "")
+  value       = try(aws_iam_role.rds_enhanced_monitoring[0].name, "")
 }
 
 output "enhanced_monitoring_iam_role_arn" {
   description = "The Amazon Resource Name (ARN) specifying the enhanced monitoring role"
-  value       = try(aws_iam_role.rds_enhanced_monitoring.arn, "")
+  value       = try(aws_iam_role.rds_enhanced_monitoring[0].arn, "")
 }
 
 output "enhanced_monitoring_iam_role_unique_id" {
   description = "Stable and unique string identifying the enhanced monitoring role"
-  value       = try(aws_iam_role.rds_enhanced_monitoring.unique_id, "")
+  value       = try(aws_iam_role.rds_enhanced_monitoring[0].unique_id, "")
 }
 
 #####
