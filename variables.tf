@@ -162,6 +162,12 @@ variable "skip_final_snapshot" {
   default     = null
 }
 
+variable "final_snapshot_identifier" {
+  description = "The name of your final DB snapshot when this DB instance is deleted. Must be provided if skip_final_snapshot is set to false."
+  type        = bool
+  default     = null
+}
+
 variable "snapshot_identifier" {
   description = "Specifies whether or not to create this cluster from a snapshot. You can use either the name or ARN when specifying a DB cluster snapshot, or the ARN when specifying a DB snapshot"
   type        = string

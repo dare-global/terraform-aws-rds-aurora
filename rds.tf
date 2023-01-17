@@ -45,8 +45,9 @@ resource "aws_rds_cluster" "main" {
 
   iam_database_authentication_enabled = var.iam_database_authentication_enabled
 
-  skip_final_snapshot = var.skip_final_snapshot
-  snapshot_identifier = var.snapshot_identifier
+  skip_final_snapshot       = var.skip_final_snapshot
+  final_snapshot_identifier = var.final_snapshot_identifier
+  snapshot_identifier       = var.snapshot_identifier
 
   source_region = var.source_region
   storage_type  = var.storage_type
