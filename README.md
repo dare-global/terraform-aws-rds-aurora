@@ -6,7 +6,7 @@ Terraform module for provisioning an Amazon RDS Aurora resources.
 ```hcl
 module "rds_aurora_postgres" {
   source  = "dare-global/rds-aurora/aws"
-  version = "1.0.0"
+  version = "1.X.X"
 
   name_prefix = "aurora-postgres-example-name"
 
