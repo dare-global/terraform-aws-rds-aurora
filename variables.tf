@@ -164,8 +164,8 @@ variable "skip_final_snapshot" {
 
 variable "final_snapshot_identifier" {
   description = "The name of your final DB snapshot when this DB instance is deleted. Must be provided if skip_final_snapshot is set to false."
-  type = bool
-  default = null
+  type        = bool
+  default     = null
 }
 
 variable "snapshot_identifier" {
