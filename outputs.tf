@@ -26,6 +26,11 @@ output "cluster_endpoint" {
   value       = try(aws_rds_cluster.main.endpoint, "")
 }
 
+output "cluster_reader_endpoint" {
+  description = "Reader endpoint for the cluster"
+  value       = try(aws_rds_cluster.main.reader_endpoint, "")
+}
+
 output "cluster_database_name" {
   description = "Name for an automatically created database on cluster creation"
   value       = var.database_name
