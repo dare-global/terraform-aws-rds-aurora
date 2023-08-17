@@ -57,6 +57,8 @@ resource "aws_rds_cluster" "main" {
 
   replication_source_identifier = var.replication_source_identifier
 
+  allow_major_version_upgrade = var.allow_major_version_upgrade
+
   tags = merge(var.tags, var.cluster_tags)
 
   dynamic "s3_import" {
