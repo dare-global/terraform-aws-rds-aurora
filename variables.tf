@@ -472,3 +472,9 @@ variable "iam_role_max_session_duration" {
   type        = number
   default     = null
 }
+
+variable "allow_major_version_upgrade" {
+  description = "Enable to allow major engine version upgrades when changing engine versions"
+  type        = bool
+  default     = false
+}
