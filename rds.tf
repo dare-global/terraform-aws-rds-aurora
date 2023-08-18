@@ -59,6 +59,8 @@ resource "aws_rds_cluster" "main" {
 
   allow_major_version_upgrade = var.allow_major_version_upgrade
 
+  db_instance_parameter_group_name = var.create_parameter_group ? aws_db_parameter_group.main[0].id : var.db_parameter_group_name
+
   tags = merge(var.tags, var.cluster_tags)
 
   dynamic "s3_import" {
