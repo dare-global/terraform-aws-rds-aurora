@@ -270,7 +270,7 @@ variable "publicly_accessible" {
 variable "ca_cert_identifier" {
   description = "The identifier of the CA certificate for the DB instance"
   type        = string
-  default     = null
+  default     = "rds-ca-rsa4096-g1"
 }
 
 variable "monitoring_interval" {
