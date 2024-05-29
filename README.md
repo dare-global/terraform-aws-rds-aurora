@@ -14,8 +14,8 @@ module "rds_aurora_postgres" {
   replica_count  = "2"
 
   engine                  = "aurora-postgresql"
-  engine_version          = "14.5"
-  engine_parameter_family = "aurora-postgresql14"
+  engine_version          = "16.2"
+  engine_parameter_family = "aurora-postgresql16"
 
   master_username = "MasterUserName"
   master_password = "MasterPassword123456"
